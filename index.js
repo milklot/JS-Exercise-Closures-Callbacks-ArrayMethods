@@ -13,9 +13,9 @@
  * Example of usage of this higher-order function:
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
-*/
+ */
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+    return callback(stringList[0])
 }
 
 // ⭐️ Example Challenge END ⭐️
@@ -27,19 +27,22 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ * In counter2 variable count is global, when in couter1 its exists only inside our function.
  * 
  * 2. Which of the two uses a closure? How can you tell?
+ * When inner scope references a variable created in the out scope that is a closure, so counter2  uses a closure;
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
-*/
+ * Counter 2 is a global count. Since it is in the global scope, it will increment count variable each time when you run function. 
+ * If you want to reset count(use it in different situation when count variable should be independed)
+ */
 
 // counter1 code
 function counterMaker() {
-  let count = 0;
-  return function counter() {
-    count++;
-  }
+    let count = 0;
+    return function counter() {
+        count++;
+    }
 }
 
 const counter1 = counterMaker();
@@ -48,7 +51,7 @@ const counter1 = counterMaker();
 let count = 0;
 
 function counter2() {
-  return count++;
+    return count++;
 }
 
 
@@ -56,11 +59,11 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(team) {
+    let randomNumber = Math.floor(Math.random() * 3);
+    return randomNumber;
 }
+
 
 /* Task 3: finalScore()
 
@@ -74,13 +77,25 @@ finalScore(inning, 9) might return:
   "Away": 5,
 }
 
-*/ 
+*/
 
-function finalScore(/*code Here*/){
+function finalScore(callback, number) {
+    let finalHome = 0;
+    let finalAway = 0;
+    let result = new Object();
 
-  /*Code Here*/
+    for (let i = 0; i < number; i++) {
+        finalHome = finalHome + inning();
+        finalAway = finalAway + inning();
+    }
+
+    result.Home = finalHome;
+    result.Away = finalAway;
+    return result;
 
 }
+
+console.log(finalScore(inning(), 9));
 
 /* Task 4: 
 
@@ -104,8 +119,21 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+let getInningScore = {};
+
+function scoreboard(getInningScore, cbInning, iNumber) {
+    let awayTeamScore = 0;
+    let homeTeamScore = 0;
+
+    for (let i = 0; i < iNumber; i++) {
+        getInningScore.final.push = console.log(`${i} inning: ${awayTeamScore} awayTeam - ${homeTeamScore} homeTeam`);
+        awayTeamScore = awayTeamScore + cbInning();
+        homeTeamScore = homeTeamScore + cbInning();
+    }
+    return getInningScore;
+
 }
 
 
+
+scoreboard(getInningScore, inning, 9);
