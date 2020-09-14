@@ -85,8 +85,8 @@ function finalScore(callback, number) {
     let result = new Object();
 
     for (let i = 0; i < number; i++) {
-        finalHome = finalHome + inning();
-        finalAway = finalAway + inning();
+        finalHome = finalHome + callback();
+        finalAway = finalAway + callback();
     }
 
     result.Home = finalHome;
@@ -95,7 +95,7 @@ function finalScore(callback, number) {
 
 }
 
-console.log(finalScore(inning(), 9));
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
