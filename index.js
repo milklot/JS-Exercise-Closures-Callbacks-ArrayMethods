@@ -27,14 +27,14 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * In counter2 variable count is global, when in couter1 its exists only inside our function.
+ * In counter2 variable count is global, when in couter1 uses a closure.
  * 
  * 2. Which of the two uses a closure? How can you tell?
- * When inner scope references a variable created in the out scope that is a closure, so counter2  uses a closure;
+ * counter1 uses a closure because theres a nested function
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- * Counter 2 is a global count. Since it is in the global scope, it will increment count variable each time when you run function. 
- * If you want to reset count(use it in different situation when count variable should be independed)
+ * counter2 for multiply functions that need to access one global variable 
+ * counter1 for one function that can create multiple values
  */
 
 // counter1 code
@@ -120,7 +120,15 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 function getInningScore(awayTeam, homeTeam, counter) {
-    return `${counter} inning: ${awayTeam} awayTeam - ${homeTeam} homeTeam`;
+    let str = '';
+    if (counter === 1) {
+        str = '1st';
+    } else if (counter === 2) {
+        str = '2nd';
+    } else if (counter === 3) {
+        str = '3rd';
+    } else str = `${counter}th`;
+    return `${str} inning: ${awayTeam} awayTeam - ${homeTeam} homeTeam`;
 }
 
 function scoreboard(getInningScore, inning, iNumber) {
