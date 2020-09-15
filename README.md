@@ -42,6 +42,8 @@ Find the file `index.js` and complete the tasks until your tests are passing.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+  It's a thing which allows a nested function to reach out and access the variables in the outer function.
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +65,12 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+  personalDice(function inside a function);
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+  function call will be the same, result(numbers) will change
 c. What is the lexical scope of `newRoll`? 
+personalDice
 
 ### Task 3 - Stretch Goals
 
